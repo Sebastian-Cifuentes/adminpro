@@ -1,0 +1,18 @@
+<h4>{{ leyend }}</h4>
+<div class="input-group mb-3">
+    <span class="input-group-btn">
+      <div class="input-group-append">
+          <button class="btn btn-primary" type="button" (click)="changeValue(-5)">
+              <i class="mdi mdi-minus"></i>
+          </button>
+      </div>
+  </span>
+    <input #txtProgress type="number" class="form-control" name="progress" [(ngModel)]="progress" (ngModelChange)="onChange($event)" min="1" max="100">
+    <span class="input-group-btn">
+      <div class="input-group-append">
+          <button class="btn btn-primary" type="button" (click)="changeValue(+5)">
+                  <i class="mdi mdi-plus"></i>
+          </button>
+      </div>
+  </span>
+</div>
