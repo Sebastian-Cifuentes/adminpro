@@ -9,6 +9,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { PagesComponent } from './pages.component';
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 import { GraphicsDonutsComponent } from './../components/graphics-donuts/graphics-donuts.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 /**
  * Routes
@@ -29,7 +30,8 @@ import { FormsModule } from '@angular/forms';
         ProgressComponent,
         PagesComponent,
         IncrementadorComponent,
-        GraphicsDonutsComponent
+        GraphicsDonutsComponent,
+        AccountSettingsComponent
     ],
     exports: [
         DashboardComponent,
