@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Modules
 import { PagesModule } from './pages/pages.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Services
 import { ServiceModule } from './services/service.module';
@@ -29,7 +29,8 @@ import { ServiceModule } from './services/service.module';
     APP_ROUTES,
     PagesModule,
     FormsModule,
-    ServiceModule
+    ServiceModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
