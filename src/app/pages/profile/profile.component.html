@@ -1,0 +1,43 @@
+<div class="row animated fadeIn">
+    <div class="col-md-7">
+        <div class="card card-body">
+            <h3 class="box-title m-b-0">Perfíl del usuario</h3>
+            <p class="text-muted m-b-30 font-13"> Datos del usuario </p>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <form ngNativeValidator #formProfile="ngForm" (ngSubmit)="saveData( formProfile )" class="form p-t-20">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">User Name</label>
+                            <input [ngModel]="user.name" name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Nombre de usuario" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input [ngModel]="user.email" [disabled]="user.google" name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Correo electrónico" required>
+                        </div>
+                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                          <i class="fa fa-save"></i>
+                          Actualizar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card card-body">
+            <h4 class="box-title m-b-0">Fotofrafía del usuario</h4>
+            <h6> Actualizar imagen del usuario </h6>
+
+            <img *ngIf="!imgTemp" [src]="user.img | img" alt="imaagen-del-usuario" class="pb-3 w150">
+            <img *ngIf="imgTemp" [src]="imgTemp" alt="imaagen-del-usuario" class="pb-3 w150">
+
+            <input (change)="selectImage( $event.target.files[0] )" type="file" class="pb-4" />
+
+
+            <button (click)="changeImage()" type="submit" [disabled]="!upImage" class="btn btn-success waves-effect waves-light m-r-10">
+              <i class="fa fa-save"></i>
+              Actualizar imagen
+            </button>
+        </div>
+    </div>
+</div>

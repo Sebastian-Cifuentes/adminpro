@@ -8,6 +8,9 @@ import { HeaderComponent } from './header/header.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { NpagefoundComponent } from './npagefound/npagefound.component';
 
+// Pipes
+import { PipesModule } from '../pipes/pipes.module';
+
 @NgModule({
     declarations: [
         SidebarComponent,
@@ -23,7 +26,8 @@ import { NpagefoundComponent } from './npagefound/npagefound.component';
     ],
     imports: [
         RouterModule,
-        CommonModule
+        CommonModule,
+        PipesModule
     ]
 })
 export class SharedModule {}

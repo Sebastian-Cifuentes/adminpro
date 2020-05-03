@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { User } from '../../models/user.model';
+import { ImageService } from '../image/image.service';
 
 // Sweet Alert
 import * as _swal from 'sweetalert';
 import { SweetAlert } from 'sweetalert/typings/core';
-import { User } from '../../models/user.model';
-import { Router } from '@angular/router';
+
 const swal: SweetAlert = _swal as any;
 
 @Injectable({
@@ -21,7 +23,8 @@ export class UserService {
 
   constructor(
     public http: HttpClient,
-    public router: Router
+    public router: Router,
+    public imageService: ImageService
   ) {
     this.loadStorage();
   }
@@ -101,5 +104,35 @@ export class UserService {
           return res.user;
         })
       );
+  }
+
+  updateUser(user: User) {
+    let URL = environment.URL + 'user/' + user._id;
+    URL += '?token=' + this.token;
+    return this.http.put( URL, user )
+      .pipe(
+        map( (resp: any) => {
+          const userdb = resp.user;
+          this.saveStorage( userdb, this.token, userdb );
+          swal('Usuario actualizado', userdb.name, 'success' );
+          return true;
+        })
+      );
+  }
+
+  changeImage( file: File, id: string ) {
+
+    this.imageService.upFile( file, 'users', id )
+      .then( (resp: any ) => {
+        console.log(resp);
+        this.user.img = resp.user.img;
+        swal('Imagen actualizada!', resp.user.name, 'success');
+
+        this.saveStorage( id, this.token, this.user );
+      })
+      .catch( err => {
+        console.log(err);
+      });
+
   }
 }
