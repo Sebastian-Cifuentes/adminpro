@@ -8,10 +8,8 @@ import { User } from '../../models/user.model';
 import { ImageService } from '../image/image.service';
 
 // Sweet Alert
-import * as _swal from 'sweetalert';
-import { SweetAlert } from 'sweetalert/typings/core';
+import Swal from 'sweetalert2';
 
-const swal: SweetAlert = _swal as any;
 
 @Injectable({
   providedIn: 'root'
@@ -99,8 +97,11 @@ export class UserService {
     return this.http.post(URL, user)
       .pipe(
         map((res: any) => {
-          swal('Usuario registrado', user.email, 'success');
-
+          Swal.fire(
+            'Usuario registrado',
+            user.email,
+            'success'
+          );
           return res.user;
         })
       );
@@ -112,9 +113,15 @@ export class UserService {
     return this.http.put( URL, user )
       .pipe(
         map( (resp: any) => {
-          const userdb = resp.user;
-          this.saveStorage( userdb, this.token, userdb );
-          swal('Usuario actualizado', userdb.name, 'success' );
+          if ( user._id === this.user._id ) {
+            const userdb = resp.user;
+            this.saveStorage( userdb, this.token, userdb );
+          }
+          Swal.fire(
+            'Usuario actualizado',
+            user.name,
+            'success'
+          );
           return true;
         })
       );
@@ -126,8 +133,11 @@ export class UserService {
       .then( (resp: any ) => {
         console.log(resp);
         this.user.img = resp.user.img;
-        swal('Imagen actualizada!', resp.user.name, 'success');
-
+        Swal.fire(
+          'Imagen actualizada!',
+          resp.user.name,
+          'success'
+        );
         this.saveStorage( id, this.token, this.user );
       })
       .catch( err => {
@@ -135,4 +145,35 @@ export class UserService {
       });
 
   }
+
+  loadUsers( since: number = 0 ) {
+
+    const URL = environment.URL + 'user?since=' + since;
+    return this.http.get( URL );
+
+  }
+
+  searchUser( search: string ) {
+    const URL = environment.URL + 'search/collection/users/' + search;
+    console.log(URL);
+    return this.http.get( URL )
+      .pipe(
+        map( (resp: any) => resp.users )
+      );
+  }
+
+  deleteUser( id: string ) {
+    const URL = environment.URL + 'user/' + id + '?token=' + this.token;
+    return this.http.delete( URL )
+      .pipe(
+        map(resp => {
+          Swal.fire(
+            'Usuario eliminado',
+            'El usuario a sido eliminado',
+            'success'
+          );
+        })
+      );
+  }
+
 }

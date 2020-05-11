@@ -3,10 +3,8 @@ import { User } from '../../models/user.model';
 import { UserService } from 'src/app/services/service.index';
 
 // Swal
-import * as _swal from 'sweetalert';
-import { SweetAlert } from 'sweetalert/typings/core';
+import Swal from 'sweetalert2';
 
-const swal: SweetAlert = _swal as any;
 
 @Component({
   selector: 'app-profile',
@@ -47,15 +45,19 @@ export class ProfileComponent implements OnInit {
     }
 
     if ( file.type.indexOf('image') < 0 ) {
-      swal( 'Solo imagenes', 'El archivo seleccionado no es una imagen', 'error');
+      Swal.fire({
+        icon: 'error',
+        title: 'Solo imagenes',
+        text: 'El archivo seleccionado no es una imagen',
+      });
       this.imgTemp = null;
       return;
     }
 
     this.upImage = file;
 
-    let reader = new FileReader();
-    let urlImgTemp = reader.readAsDataURL( file );
+    const reader = new FileReader();
+    const urlImgTemp = reader.readAsDataURL( file );
 
     reader.onloadend = () => {
       this.imgTemp = reader.result;

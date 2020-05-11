@@ -6,9 +6,7 @@ declare function init_plugins();
 import { Router } from '@angular/router';
 
 // Sweet Alert
-import * as _swal from 'sweetalert';
-import { SweetAlert } from 'sweetalert/typings/core';
-const swal: SweetAlert = _swal as any;
+import Swal from 'sweetalert2';
 
 // Modelos
 import { User } from '../models/user.model';

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 /**
  * Componentes
@@ -10,6 +11,9 @@ import { PagesComponent } from './pages.component';
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 import { GraphicsDonutsComponent } from './../components/graphics-donuts/graphics-donuts.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './users/users.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 
 /**
  * Routes
@@ -27,8 +31,6 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 
 // Pipes
 import { PipesModule } from '../pipes/pipes.module';
-import { ProfileComponent } from './profile/profile.component';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -41,7 +43,9 @@ import { CommonModule } from '@angular/common';
         AccountSettingsComponent,
         PromesasComponent,
         RxjsComponent,
-        ProfileComponent
+        ProfileComponent,
+        UsersComponent,
+        ModalUploadComponent
     ],
     exports: [
         DashboardComponent,

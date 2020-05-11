@@ -7,11 +7,10 @@ import { environment } from '../../environments/environment';
 export class ImgPipe implements PipeTransform {
 
   transform(img: string, tipo: string= 'user'): any {
-
     let url = environment.URL + 'image/';
 
     if (!img) {
-      return URL + 'users/xxx';
+      return url + 'users/xxx';
     }
 
     if ( img.indexOf('https') >= 0 ) {
@@ -28,11 +27,10 @@ export class ImgPipe implements PipeTransform {
         break;
 
       case 'doctor':
-        url += url + 'doctors/' + img;
+        url += 'doctors/' + img;
         break;
 
       default:
-        console.log('tipo de imagen debe de ser: user, hospital o doctor', img, tipo);
         url += 'users/xxx';
     }
 
