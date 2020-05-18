@@ -155,7 +155,6 @@ export class UserService {
 
   searchUser( search: string ) {
     const URL = environment.URL + 'search/collection/users/' + search;
-    console.log(URL);
     return this.http.get( URL )
       .pipe(
         map( (resp: any) => resp.users )

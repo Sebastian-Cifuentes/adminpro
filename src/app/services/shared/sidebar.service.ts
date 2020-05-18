@@ -19,7 +19,7 @@ export class SidebarService {
     },
     {
       title: 'Mantenimiento',
-      icon: 'mdi mdi-folder-lock-open',
+      icon: 'mdi mdi-folder-lock-open',  
       submenu: [
         { title: 'Usuarios', url: '/users' },
         { title: 'Doctores', url: '/doctors' },

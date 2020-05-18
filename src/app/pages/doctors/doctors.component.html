@@ -1,0 +1,66 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input #searchDoctor (keyup)="searchDoctors( searchDoctor.value )" class="form-control" type="text" placeholder="Buscar doctor...">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="loading">
+    <div class="col-sm-12">
+        <div class="alert alert-warning text-center">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor...</span>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="!loading">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-right">
+                    <button [routerLink]="['/doctor', 'new']" class="btn btn-primary waves-effect waves-light btn-rounded"><i class="fa fa-plus pr-1"></i>Crear doctor</button>
+                </div>
+
+                <h3 class="card-title"> Doctores registrados <small>( {{ doctorService.allDoctors }} )</small> </h3>
+                <table class="table table-hover">
+                    <thead>
+                        <th>Imagen</th>
+                        <th>Médico</th>
+                        <th>Hospital</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let doctor of doctors">
+                            <td class="w70">
+                                <img [src]="doctor.img | img:'doctor'" class="img-50 img-circle">
+                            </td>
+                            <td>{{ doctor.name }}</td>
+                            <td>{{ doctor.hospital.name }}</td>
+                            <td>
+                                <button [routerLink]="['/doctor', doctor._id]" class="btn btn-primary mr-2">
+                                <i class="fa fa-edit"></i>
+                              </button>
+                                <button (click)="deleteDoctor( doctor )" class="btn btn-danger">
+                                <i class="fa fa-trash-o"></i>
+                              </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button (click)="changeSince(-5)" class="btn btn-secondary">
+              Anteriores
+            </button>
+                <button (click)="changeSince(5)" class="btn btn-secondary">
+              Siguiente
+            </button>
+            </div>
+        </div>
+    </div>
+</div>

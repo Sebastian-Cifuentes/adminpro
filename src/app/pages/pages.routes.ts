@@ -9,6 +9,9 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { LoginGuardGuard } from '../services/guards/login-guard.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
+import { HospitalsComponent } from './hospitals/hospitals.component';
+import { DoctorsComponent } from './doctors/doctors.component';
+import { DoctorComponent } from './doctors/doctor.component';
 
 const pagesRoutes: Routes = [
     {
@@ -25,7 +28,10 @@ const pagesRoutes: Routes = [
               description: 'Esta página es Ajustes del tema'} },
 
             // Maintenances
-            { path: 'users', component: UsersComponent, data: {title: 'Mantenimiento de usuarios', description: 'Uusuarios de la cuenta'} },
+            { path: 'users', component: UsersComponent, data: {title: 'Mantenimiento de usuarios', description: 'Usuarios de la cuenta'} },
+            { path: 'hospitals', component: HospitalsComponent, data: {title: 'Mantenimiento de hospitales', description: 'Hospitales actuales'} },
+            { path: 'doctors', component: DoctorsComponent, data: {title: 'Mantenimiento de doctores', description: 'Doctores actuales'} },
+            { path: 'doctor/:id', component: DoctorComponent, data: {title: 'Actualizar medico', description: 'Actulizar medico'} },
             { path: 'profile', component: ProfileComponent, data: {title: 'Perfil', description: 'Perfil del usuario'}},
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
