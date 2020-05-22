@@ -1,0 +1,65 @@
+<div class="row">
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Usuarios</h4>
+                <p *ngIf="users.length <= 0">
+                    No se encontraron usuarios
+                </p>
+
+                <table *ngIf="users.length > 0" class="table table-hover">
+                    <tbody>
+                        <tr *ngFor="let user of users" [routerLink]="['/users']" class="pointer">
+                            <td><img [src]="user.img | img" class="img-50 img-circle"></td>
+                            <td>{{ user.name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Hospitales</h4>
+
+                <p *ngIf="hospitals.length <= 0">
+                    No se encontraron hospitales
+                </p>
+
+                <table *ngIf="hospitals.length > 0" class="table table-hover">
+                    <tbody>
+                        <tr *ngFor="let hospital of hospitals" [routerLink]="['/hospitals']" class="pointer">
+                            <td><img [src]="hospital.img | img:'hospital'" class="img-50 img-circle"></td>
+                            <td>{{ hospital.name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Doctores</h4>
+
+                <p *ngIf="doctors.length <= 0">
+                    No se encontraron doctores
+                </p>
+
+                <table *ngIf="doctors.length > 0" class="table table-hover">
+                    <tbody>
+                        <tr *ngFor="let doctor of doctors" [routerLink]="['/doctor', doctor._id]" class="pointer">
+                            <td><img [src]="doctor.img | img:'doctor'" class="img-50 img-circle"></td>
+                            <td>{{ doctor.name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

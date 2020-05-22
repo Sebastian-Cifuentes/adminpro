@@ -32,7 +32,7 @@ import { ServiceModule } from './services/service.module';
     ServiceModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

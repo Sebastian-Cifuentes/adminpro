@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
     }
 
     this.userService.updateUser( this.user )
-      .subscribe(resp => console.log(resp));
+      .subscribe();
   }
 
   selectImage( file: File ) {

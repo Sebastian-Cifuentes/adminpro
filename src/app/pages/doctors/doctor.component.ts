@@ -66,7 +66,7 @@ export class DoctorComponent implements OnInit {
 
   changeHospital( id: string ) {
     this.hospitalService.getHospital( id )
-      .subscribe( resp => this.hospital = resp );  
+      .subscribe( resp => this.hospital = resp );
   }
 
   changeImg() {

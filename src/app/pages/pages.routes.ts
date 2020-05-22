@@ -6,12 +6,13 @@ import { Graficas1Component } from './graficas1/graficas1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
-import { LoginGuardGuard } from '../services/guards/login-guard.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
 import { HospitalsComponent } from './hospitals/hospitals.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorComponent } from './doctors/doctor.component';
+import { SearchComponent } from './search/search.component';
+import { LoginGuardGuard, AdminGuard } from '../services/service.index';
 
 const pagesRoutes: Routes = [
     {
@@ -26,13 +27,19 @@ const pagesRoutes: Routes = [
             { path: 'rxjs', component: RxjsComponent, data: {title: 'RxJs', description: 'Esta página es RxJs'}},
             { path: 'account-settings', component: AccountSettingsComponent, data: {title: 'Ajustes del tema',
               description: 'Esta página es Ajustes del tema'} },
-
+            { path: 'profile', component: ProfileComponent, data: {title: 'Perfil', description: 'Perfil del usuario'}},
+            { path: 'search/:searching', component: SearchComponent, data: {title: 'Buscardor'}},
             // Maintenances
-            { path: 'users', component: UsersComponent, data: {title: 'Mantenimiento de usuarios', description: 'Usuarios de la cuenta'} },
-            { path: 'hospitals', component: HospitalsComponent, data: {title: 'Mantenimiento de hospitales', description: 'Hospitales actuales'} },
+            {
+              path: 'users',
+              component: UsersComponent,
+              // canActivate: [ AdminGuard ],
+              data: {title: 'Mantenimiento de usuarios', description: 'Usuarios de la cuenta'}
+            },
+            { path: 'hospitals', component: HospitalsComponent, data: {title: 'Mantenimiento de hospitales',
+              description: 'Hospitales actuales'} },
             { path: 'doctors', component: DoctorsComponent, data: {title: 'Mantenimiento de doctores', description: 'Doctores actuales'} },
             { path: 'doctor/:id', component: DoctorComponent, data: {title: 'Actualizar medico', description: 'Actulizar medico'} },
-            { path: 'profile', component: ProfileComponent, data: {title: 'Perfil', description: 'Perfil del usuario'}},
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     }
