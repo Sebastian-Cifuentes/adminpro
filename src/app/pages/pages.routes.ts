@@ -12,15 +12,16 @@ import { HospitalsComponent } from './hospitals/hospitals.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorComponent } from './doctors/doctor.component';
 import { SearchComponent } from './search/search.component';
-import { LoginGuardGuard, AdminGuard } from '../services/service.index';
+import { VerifyTokenGuard } from '../services/guards/verify-token.guard';
+import { AdminGuard } from '../services/guards/admin.guard';
 
 const pagesRoutes: Routes = [
-    {
-        path: '',
-        component: PagesComponent,
-        canActivate: [ LoginGuardGuard ],
-        children: [
-            { path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard', description: 'Esta página es Dashboard'}},
+            {
+              path: 'dashboard',
+              component: DashboardComponent,
+              data: {title: 'Dashboard', description: 'Esta página es Dashboard'},
+              canActivate: [ VerifyTokenGuard ]
+            },
             { path: 'progress', component: ProgressComponent, data: {title: 'Progreso', description: 'Esta página es Progreso'}},
             { path: 'graficas1', component: Graficas1Component, data: {title: 'Graficas', description: 'Esta página es Graficas'}},
             { path: 'promesas', component: PromesasComponent, data: {title: 'Promesas', description: 'Esta página es Promesas'}},
@@ -33,7 +34,7 @@ const pagesRoutes: Routes = [
             {
               path: 'users',
               component: UsersComponent,
-              // canActivate: [ AdminGuard ],
+              canActivate: [ AdminGuard ],
               data: {title: 'Mantenimiento de usuarios', description: 'Usuarios de la cuenta'}
             },
             { path: 'hospitals', component: HospitalsComponent, data: {title: 'Mantenimiento de hospitales',
@@ -41,8 +42,6 @@ const pagesRoutes: Routes = [
             { path: 'doctors', component: DoctorsComponent, data: {title: 'Mantenimiento de doctores', description: 'Doctores actuales'} },
             { path: 'doctor/:id', component: DoctorComponent, data: {title: 'Actualizar medico', description: 'Actulizar medico'} },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-        ]
-    }
 ];
 
 export const PAGES_ROUTES = RouterModule.forChild( pagesRoutes );

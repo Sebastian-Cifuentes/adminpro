@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginGuardGuard } from './guards/login-guard.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { ModalUploadService } from '../components/modal-upload/modal-upload.service';
+import { VerifyTokenGuard } from './guards/verify-token.guard';
 import {
   SettingsService,
   SidebarService,
@@ -26,7 +27,8 @@ import {
     UserService,
     ModalUploadService,
     LoginGuardGuard,
-    // AdminGuard,
+    VerifyTokenGuard,
+    AdminGuard,
     HospitalService,
     DoctorService
   ]

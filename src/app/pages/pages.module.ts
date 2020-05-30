@@ -41,7 +41,6 @@ import { SearchComponent } from './search/search.component';
         DashboardComponent,
         Graficas1Component,
         ProgressComponent,
-        PagesComponent,
         IncrementadorComponent,
         GraphicsDonutsComponent,
         AccountSettingsComponent,
@@ -49,7 +48,6 @@ import { SearchComponent } from './search/search.component';
         RxjsComponent,
         ProfileComponent,
         UsersComponent,
-        ModalUploadComponent,
         HospitalsComponent,
         DoctorsComponent,
         DoctorComponent,
@@ -59,7 +57,6 @@ import { SearchComponent } from './search/search.component';
         DashboardComponent,
         Graficas1Component,
         ProgressComponent,
-        PagesComponent
     ],
     imports: [
         SharedModule,

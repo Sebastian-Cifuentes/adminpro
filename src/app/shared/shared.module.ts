@@ -10,19 +10,22 @@ import { NpagefoundComponent } from './npagefound/npagefound.component';
 
 // Pipes
 import { PipesModule } from '../pipes/pipes.module';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 
 @NgModule({
     declarations: [
         SidebarComponent,
         HeaderComponent,
         BreadcrumbsComponent,
-        NpagefoundComponent
+        NpagefoundComponent,
+        ModalUploadComponent
     ],
     exports: [
         SidebarComponent,
         HeaderComponent,
         BreadcrumbsComponent,
-        NpagefoundComponent
+        NpagefoundComponent,
+        ModalUploadComponent
     ],
     imports: [
         RouterModule,

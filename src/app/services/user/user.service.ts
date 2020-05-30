@@ -30,6 +30,28 @@ export class UserService {
     this.loadStorage();
   }
 
+  updateToken() {
+    const URL = environment.URL + 'login/renewToken?token=' + this.token;
+    return this.http.get( URL )
+      .pipe(
+        map( (res: any) => {
+          this.token = res.token;
+          localStorage.setItem('token', this.token);
+          console.log('Token renovado');
+          return true;
+        }),
+        catchError( err => {
+          Swal.fire(
+            'No se pudo renovar token',
+            'No fue posible renovar token',
+            'error'
+          );
+          this.router.navigate(['/login']);
+          return throwError(err);
+        })
+      );
+  }
+
   isLogin() {
     return( this.token.length > 1 ) ? true : false;
   }
@@ -95,7 +117,6 @@ export class UserService {
       .pipe(
         map( (res: any) => {
           this.saveStorage(res.id, res.token, res.user, res.menu);
-          console.log(res);
           return true;
         }),
         catchError( err => {

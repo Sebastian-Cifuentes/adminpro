@@ -55,8 +55,6 @@ export class LoginComponent implements OnInit {
   }
 
   login( f: NgForm ) {
-    console.log( f.value );
-
     const user = new User(null, f.value.email, f.value.password);
 
     this.userService.login( user, f.value.remember )
